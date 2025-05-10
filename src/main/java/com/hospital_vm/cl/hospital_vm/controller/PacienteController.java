@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -45,7 +46,7 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Paciente> buscar(@PathVariable Interger id) {
+    public ResponseEntity<Paciente> buscar(@PathVariable Integer id) {
 
         try{
             Paciente paciente = pacienteService.findById(id);
@@ -54,9 +55,30 @@ public class PacienteController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Paciente> actualizar(@PathVariable Integer id, @RequestBody Paciente paciente){
+
+        try{
+            Paciente pac = pacienteService.findById(id);
+            pac.setId(id);
+            pac.setRun(paciente.getRun());
+            pac.setNombres(paciente.getNombres());
+            pac.setApellidos(paciente.getApellidos());
+            pac.setFechaNacimiento(paciente.getFechaNacimiento());
+            pac.setCorreo(paciente.getCorreo());
+            pacienteService.save(pac);
+            return ResponseEntity.ok(paciente);
+        } catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+        
+
+    }
+    
     
     @DeleteMapping("{id}")
-    public ResponseEntity<?> eliminar (PathVariable Long id){
+    public ResponseEntity<?> eliminar (@PathVariable Long id){
         try{
             pacienteService.delete(id);
             return ResponseEntity.noContent().build();
