@@ -32,4 +32,7 @@ public class Paciente {
     @Column(nullable = false)
     private String correo;
 
+    @Column(nillable = false)
+    private String telefono;
+
 }
