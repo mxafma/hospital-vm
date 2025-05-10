@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Date;
-
+import java.util.List;
 
 
 @Entity
@@ -31,5 +31,17 @@ public class Paciente {
 
     @Column(nullable = false)
     private String correo;
+
+    /*** Relaciones ***/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tipo", nullable = false)
+    private Tipo_usuario tipoUsuario;
+
+    @OneToOne(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Ficha_paciente fichaPaciente;
+
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
+
+    private List<Atencion> atenciones;
 
 }
