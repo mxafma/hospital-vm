@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Ficha_pacienteRepository extends JpaRepository<Ficha_paciente, Integer> {
-    // Por ejemplo:
-    // Optional<FichaPaciente> findByPacienteId(Integer pacienteId);
+
 }

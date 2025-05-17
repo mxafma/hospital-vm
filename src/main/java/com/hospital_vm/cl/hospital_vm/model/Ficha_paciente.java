@@ -1,5 +1,6 @@
 package com.hospital_vm.cl.hospital_vm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ public class Ficha_paciente {
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_paciente")
+    @JsonIgnore
     private Paciente paciente;
 
     @Column(name = "datos_personales", length = 100)

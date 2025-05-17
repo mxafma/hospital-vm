@@ -1,4 +1,6 @@
 package com.hospital_vm.cl.hospital_vm.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +44,7 @@ public class Paciente {
     private Ficha_paciente fichaPaciente;
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
-
+    @JsonIgnore
     private List<Atencion> atenciones;
 
 }

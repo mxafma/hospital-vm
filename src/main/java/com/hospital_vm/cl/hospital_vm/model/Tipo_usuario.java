@@ -4,11 +4,15 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "tipo_usuario")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Tipo_usuario {
 
     @Id
@@ -20,5 +24,6 @@ public class Tipo_usuario {
 
     /*** Inversa de Paciente ⇄ TipoUsuario ***/
     @OneToMany(mappedBy = "tipoUsuario", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Paciente> pacientes;
 }

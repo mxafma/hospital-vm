@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MedicoRepository extends JpaRepository<Medico, Integer> {
-    // Ejemplo:
-    // List<Medico> findByEspecialidad(String especialidad);
+
 }
