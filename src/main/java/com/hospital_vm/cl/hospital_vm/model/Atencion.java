@@ -23,8 +23,8 @@ public class Atencion {
     @Temporal(TemporalType.TIME)
     private Date horaAtencion;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private Double costo;
+    @Column(name = "costo" ,nullable = false)
+    private Number costo;
 
     @Column(length = 300)
     private String comentario;
